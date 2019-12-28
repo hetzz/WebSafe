@@ -46,12 +46,12 @@
 https://websafe.herokuapp.com
 
 ##### Screenshots
-<div align = "center">
-<img src="./assets/intro3.png"width=200px/>
+<div>
+<img src="./assets/intro3.png"/>
 <br/><br/>
-<img src="./assets/intro2.png" width=200px/>
+<img src="./assets/intro2.png" />
 <br/><br/>
-<img src="./assets/intro.png" width=200px/>
+<img src="./assets/intro.png"/>
 <br/><br/>
 
 </div>
