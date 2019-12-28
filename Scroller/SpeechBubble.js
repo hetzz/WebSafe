@@ -1,22 +1,33 @@
-function SpeechBubble(text)
+function SpeechBubble(text, type)
 {
-    this.container = new PIXI.Container();
-    var padding = {x: 20, y: 10};
-    var radius = 20;
-    var origin = {x: 0, y: 0};
-    var tx = new PIXI.Text(text, {font: '30px sans-serif', fill: 0x000000, align: 'left', wordWrap: true, wordWrapWidth: 200});
-    tx.position = {x: origin.x+padding.x, y: origin.y-padding.y};
-    tx.anchor.set(0, 1);
+    // $('.speech-bubble').html(text);
+    $('.speech-bubble').toggleClass('hide');
+    // var type_bubble = document.getElementsByClassName('speech-bubble')[0];
 
-    // backdrop
-    var textbg = new PIXI.Graphics();
-    textbg.beginFill(0xFFFFFF, 1);
-    textbg.drawRoundedRect(origin.x, origin.y-(tx.height+2*padding.y), tx.width+2*padding.x, tx.height+2*padding.y, radius);
-    textbg.endFill();
-
-    // Add both to the stage
-    this.container.addChild(textbg);
-    this.container.addChild(tx);
+    // var typewriter = new Typewriter(type_bubble, {
+    //     loop: false
+    // });
     
-    return this.container;
+    typewriter_actions = [{speed: 100}];//10
+    for (var i = 0; i < text.length; i++) {
+        typewriter_actions.push({type: text[i]});
+        typewriter_actions.push({delay: 20});//2000
+        typewriter_actions.push({remove: {num: text[i].length, type: 'whole'}});
+    }
+    typewriter_actions.pop();
+    // typewriter.start();
+    // return true;
+    
+    $('.speech-bubble')
+        .on('typewriteTyped', function (event, data) {
+        if(data==text[text.length - 1]){
+            if(type=='intro')
+                login();
+            if(type=='signedin')
+                signedin(true);
+        }
+    }).typewrite({
+            actions: typewriter_actions
+        });
+    return true;
 }
